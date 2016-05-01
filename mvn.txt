@@ -1,3 +1,0 @@
-mvn archetype:generate -B -DgroupId=com.mycompany -DartifactId=introcloud -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=jooby-archetype -DarchetypeGroupId=org.jooby -DarchetypeVersion=1.0.0.CR2
-cd introcloud
-mvn jooby:run
