@@ -10,6 +10,7 @@ public class App extends Jooby {
 
  {
 	use(new Jackson());
+        assets("/","index.html");
     use(ManipulandoTarefa.class);
   }
 

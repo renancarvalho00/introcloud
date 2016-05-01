@@ -1,6 +1,6 @@
 # My Todo List Java Jooby
 
-Este projeto visa apresentar a execução de um **REST** em java junto com **API Json**.
+Este projeto visa apresentar a execução de um **My Todo List** no formato **REST** em java junto com **API Json** com o **framework Jooby**.
 
 # Requerimentos
 
@@ -54,6 +54,7 @@ public class App extends Jooby {
 
  {
 	use(new Jackson());
+	 assets("/","index.html");
     use(ManipulandoTarefa.class);
   }
 
@@ -65,87 +66,32 @@ public class App extends Jooby {
 
 ```
 
-## Tarefa class
-
-```java
-package com.mycompany;
-
-public class Tarefa {
-   
-  public int id;
-
-  public String name;
-
-    public Tarefa() {
-    }
-
-    public Tarefa(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-	
-	public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    
-}
-
-```
-
 ## ManipulandoTarefa class
 
 ```java
 package com.mycompany;
-
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.List;
 import java.util.ArrayList;
 import org.jooby.mvc.Path;
 import org.jooby.mvc.GET;
-import org.jooby.mvc.POST;
-import org.jooby.mvc.DELETE;
-import org.jooby.mvc.PUT;
-
-@Path("/tarefa")
 
 public class ManipulandoTarefa {
+    
+public List<String> tarefaLista = new ArrayList<String>();
 
-  static AtomicInteger idgen = new AtomicInteger();
-  public List tarefaList = new ArrayList<Tarefa>();
-  private int position;
+@Path("/tarefa")
+@GET
 
-  @GET
-  public List getTarefaList() {
-	return tarefaList;
-  }
-  @POST
-  public List postTarefa(String name) {
-	tarefaList.add(new Tarefa(idgen.incrementAndGet(), name));
-	return tarefaList;
-  }
-  @DELETE
-  public List deleteTarefa(int id) {
-	tarefaList.remove(position);
-	return tarefaList;
-  }
-  @PUT
-  public List updateTarefa(Tarefa tarefa, int position) {
-	tarefaList.remove(position);
-	return tarefaList;
-  }
+public List<String> teste(){
+
+tarefaLista.add("1");
+tarefaLista.add("renan");
+tarefaLista.add("cesmac");
+    
+return tarefaLista;
+
+
 }
 
+}
 ```
