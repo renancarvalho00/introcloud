@@ -30,31 +30,23 @@ Abra o navegador e digite:
 ```
 http://localhost:8080
 ```
-## Json
+# Agora vamos criar e alimentar as classes
 
-Nossa API será JSON, então vamos adicionar [jackson](https://github.com/jooby-project/jooby/tree/master/jooby-jdbi) dependencia e importar no nosso  ```App.java```:
-
-```java
-import org.jooby.json.Jackson;
-...
-{
-  use(new Jackson());
-}
-```
-
-## App class
-
+## APP CLASS
 ```java
 package com.mycompany;
 
 import org.jooby.Jooby;
 import org.jooby.json.Jackson;
 
+/**
+ * @author jooby generator
+ */
 public class App extends Jooby {
 
  {
 	use(new Jackson());
-	 assets("/","index.html");
+        assets("/","index.html");
     use(ManipulandoTarefa.class);
   }
 
@@ -63,11 +55,8 @@ public class App extends Jooby {
   }
 
 }
-
 ```
-
-## ManipulandoTarefa class
-
+## ManipulandoTarefa CLASS
 ```java
 package com.mycompany;
 import java.util.List;
@@ -75,23 +64,58 @@ import java.util.ArrayList;
 import org.jooby.mvc.Path;
 import org.jooby.mvc.GET;
 
+
+/**Classe para a criação da Lista e a alimentação da mesma para o metodo GET.
+ * @author Renan Carvalho
+ * @version 1.0
+ * @since Release 02 da aplicação
+ */
+
 public class ManipulandoTarefa {
-    
+
+/** Criação da Lista*/    
 public List<String> tarefaLista = new ArrayList<String>();
 
+/** Apontando o path*/ 
 @Path("/tarefa")
 @GET
-
-public List<String> teste(){
-
-tarefaLista.add("1");
-tarefaLista.add("renan");
-tarefaLista.add("cesmac");
-    
-return tarefaLista;
-
-
-}
-
+/** Alimentando a lista para o GET*/ 
+ public List<String> lista() {
+     
+     tarefaLista.add("1");
+     tarefaLista.add("renan");
+     tarefaLista.add("cesmac");
+     
+     return tarefaLista;
+     
+     
+  }
 }
 ```
+
+# Agora vamos criar nosso index.html
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>My Todo List</title>
+</head>
+
+<body>
+<center><h1>My Todo List</h1></center>
+<center><a href="\tarefa">GET</a></center>
+</body>
+</html>
+```
+#Abra o navegador e digite:
+
+```
+http://localhost:8080
+```
+Depois click em GET
+```
+
+
+
+
